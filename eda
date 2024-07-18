@@ -1,0 +1,34 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+class CSVAnalysis:
+    
+    def read_csv(file_path):
+        """Read a CSV file and return a DataFrame."""
+        return pd.read_csv(file_path)
+
+    
+    def write_csv(dataframe, file_path):
+        """Write a DataFrame to a CSV file."""
+        dataframe.to_csv(file_path, index=False)
+
+    
+    def dataframe_head(df):
+        """Return the first 5 rows of the DataFrame."""
+        return df.head()
+
+    
+    def dataframe_tail(df):
+        """Return the last 5 rows of the DataFrame."""
+        return df.tail()
+
+    
+    def dataframe_shape(df):
+        """Return the shape of the DataFrame."""
+        return df.shape
+
+    
+    def dataframe_info(df):
+        """Print a concise summary of a DataFrame."""
+        return df.info()
