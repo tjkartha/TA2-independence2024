@@ -1,14 +1,49 @@
-import pandas as pd
-import seaborn as sns
 import matplotlib.pyplot as plt
+import seaborn as sns
 
-class CSVAnalysis:
-    def read_csv(file_path):
-        """Read a CSV file and return a DataFrame."""
-        return pd.read_csv(file_path)
+class PostModelViz:
+    def residual_plot(residuals):
+        """Plot residuals."""
+        sns.residplot(x=residuals.index, y=residuals)
+        plt.show()
 
-    def write_csv(dataframe, file_path):
-        """Write a DataFrame to a CSV file."""
-        dataframe.to_csv(file_path, index=False)
+    def cooks_distance_plot(cooks_d):
+        """Plot Cook's distance."""
+        sns.scatterplot(x=cooks_d.index, y=cooks_d)
+        plt.show()
 
-   
+    def regression_line_plot(df, x, y):
+        """Plot regression line."""
+        sns.regplot(x=x, y=y, data=df)
+        plt.show()
+
+    def leverage_plot(leverage):
+        """Plot leverage values."""
+        sns.scatterplot(x=leverage.index, y=leverage)
+        plt.show()
+
+    def confusion_matrix_plot(cm):
+        """Plot confusion matrix."""
+        sns.heatmap(cm, annot=True, fmt='d')
+        plt.show()
+
+    def learning_curve_plot(train_sizes, train_scores, test_scores):
+        """Plot learning curve."""
+        plt.plot(train_sizes, train_scores, label='Train Score')
+        plt.plot(train_sizes, test_scores, label='Test Score')
+        plt.xlabel('Training Sizes')
+        plt.ylabel('Scores')
+        plt.legend()
+        plt.show()
+
+    def roc_curve_plot(fpr, tpr):
+        """Plot ROC curve."""
+        plt.plot(fpr, tpr, marker='.')
+        plt.xlabel('False Positive Rate')
+        plt.ylabel('True Positive Rate')
+        plt.show()
+
+    def f1_score_plot(f1_scores):
+        """Plot F1 scores."""
+        sns.barplot(x=list(f1_scores.keys()), y=list(f1_scores.values()))
+        plt.show()
