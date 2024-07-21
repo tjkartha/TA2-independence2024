@@ -64,9 +64,6 @@ def main():
     print("Here is the code for the selected model:")
     print(selected_code)
 
-if __name__ == "__main__":
-    main()
-
 
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import numpy as np
