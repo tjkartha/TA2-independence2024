@@ -1,0 +1,78 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+class CSVAnalysis:
+    def dataframe_head(df):
+        "Return the first 5 rows of the DataFrame."
+        return df.head()
+
+    def dataframe_tail(df):
+        "Return the last 5 rows of the DataFrame."
+        return df.tail()
+
+    def dataframe_shape(df):
+        "Return the shape of the DataFrame."
+        return df.shape
+
+    def dataframe_info(df):
+        "Print a concise summary of a DataFrame."
+        return df.info()
+
+    def dataframe_describe(df):
+        "Generate descriptive statistics."
+        return df.describe()
+
+    def dataframe_dtypes(df):
+        "Return the data types of the columns."
+        return df.dtypes
+
+    def histplot(df, column):
+        "Create a histogram plot."
+        sns.histplot(df[column])
+        plt.show()
+
+    def boxplot(df, column):
+        "Create a box plot."
+        sns.boxplot(y=df[column])
+        plt.show()
+
+    def scatterplot(df, x, y):
+        "Create a scatter plot."
+        sns.scatterplot(x=df[x], y=df[y])
+        plt.show()
+
+    def heatmap(df):
+        "Create a heatmap."
+        sns.heatmap(df.corr(), annot=True)
+        plt.show()
+
+    def pairplot(df):
+        "Create a pair plot."
+        sns.pairplot(df)
+        plt.show()
+
+    def lineplot(df, x, y):
+        "Create a line plot."
+        sns.lineplot(x=df[x], y=df[y])
+        plt.show()
+
+    def barplot(df, x, y):
+        "Create a bar plot."
+        sns.barplot(x=df[x], y=df[y])
+        plt.show()
+
+    def violinplot(df, x, y):
+        "Create a violin plot."
+        sns.violinplot(x=df[x], y=df[y])
+        plt.show()
+
+    def density_plot(df, column):
+        "Create a density plot."
+        sns.kdeplot(df[column], shade=True)
+        plt.show()
+
+    def regplot(df, x, y):
+        "Create a regression plot."
+        sns.regplot(x=df[x], y=df[y])
+        plt.show()
