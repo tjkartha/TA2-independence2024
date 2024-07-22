@@ -80,7 +80,4 @@ class CSVAnalysis:
         sns.kdeplot(df[column], shade=True)
         plt.show()
 
-    def regplot(df, x, y):
-        """Create a regression plot."""
-        sns.regplot(x=df[x], y=df[y])
-        plt.show()
+
