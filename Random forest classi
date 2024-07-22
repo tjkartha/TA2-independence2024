@@ -1,23 +1,42 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 
-# Assuming x_train, y_train, x_test, y_test are already defined
+class RandomForestModel:
+    def __init__(self, random_state=0):
+        self.model = RandomForestClassifier(random_state=random_state)
+    
+    def fit(self, X_train, y_train):
+        """Fit the Random Forest Classifier model to the training data."""
+        self.model.fit(X_train, y_train)
+    
+    def predict(self, X_test):
+        """Predict the test set using the trained model."""
+        return self.model.predict(X_test)
+    
+    def evaluate(self, y_true, y_pred):
+        """Calculate and return performance metrics."""
+        accuracy = accuracy_score(y_true, y_pred)
+        precision = precision_score(y_true, y_pred, average='weighted')
+        recall = recall_score(y_true, y_pred, average='weighted')
+        f1 = f1_score(y_true, y_pred, average='weighted')
+        conf_matrix = confusion_matrix(y_true, y_pred)
+        return accuracy, precision, recall, f1, conf_matrix
 
-# Fit the Random Forest Classifier model
-random_forest_classifier = RandomForestClassifier(random_state=0)
-random_forest_classifier.fit(x_train, y_train)
+# Example usage
+# Initialize the model
+rf_model = RandomForestModel()
 
-# Predict the test set
-y_pred = random_forest_classifier.predict(x_test)
+# Fit the model
+rf_model.fit(x_train, y_train)
 
-# Calculate model performance metrics
-accuracy = accuracy_score(y_test, y_pred)
-precision = precision_score(y_test, y_pred, average='weighted')  # 'weighted' for multi-class
-recall = recall_score(y_test, y_pred, average='weighted')  # 'weighted' for multi-class
-f1 = f1_score(y_test, y_pred, average='weighted')  # 'weighted' for multi-class
-conf_matrix = confusion_matrix(y_test, y_pred)
+# Make predictions
+y_pred = rf_model.predict(x_test)
+
+# Evaluate the model
+accuracy, precision, recall, f1, conf_matrix = rf_model.evaluate(y_test, y_pred)
 
 # Print the performance metrics
+print("Random Forest Classifier Performance:")
 print("Accuracy:", accuracy)
 print("Precision:", precision)
 print("Recall:", recall)
