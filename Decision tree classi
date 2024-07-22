@@ -1,0 +1,24 @@
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+
+# Fit the Decision Tree Classifier model
+decision_tree_classifier = DecisionTreeClassifier(random_state=0)
+decision_tree_classifier.fit(x_train, y_train)
+
+# Predict the test set
+y_pred_dt = decision_tree_classifier.predict(x_test)
+
+# Calculate model performance metrics
+accuracy_dt = accuracy_score(y_test, y_pred_dt)
+precision_dt = precision_score(y_test, y_pred_dt, average='weighted')  # 'weighted' for multi-class
+recall_dt = recall_score(y_test, y_pred_dt, average='weighted')  # 'weighted' for multi-class
+f1_dt = f1_score(y_test, y_pred_dt, average='weighted')  # 'weighted' for multi-class
+conf_matrix_dt = confusion_matrix(y_test, y_pred_dt)
+
+# Print the performance metrics
+print("Decision Tree Classifier Performance:")
+print("Accuracy:", accuracy_dt)
+print("Precision:", precision_dt)
+print("Recall:", recall_dt)
+print("F1 Score:", f1_dt)
+print("Confusion Matrix:\n", conf_matrix_dt)
