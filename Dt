@@ -1,1 +1,26 @@
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
+
+# Assuming x_train, y_train, x_test, y_test are already defined
+
+# Fit the Random Forest Classifier model
+random_forest_classifier = RandomForestClassifier(random_state=0)
+random_forest_classifier.fit(x_train, y_train)
+
+# Predict the test set
+y_pred = random_forest_classifier.predict(x_test)
+
+# Calculate model performance metrics
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred, average='weighted')  # 'weighted' for multi-class
+recall = recall_score(y_test, y_pred, average='weighted')  # 'weighted' for multi-class
+f1 = f1_score(y_test, y_pred, average='weighted')  # 'weighted' for multi-class
+conf_matrix = confusion_matrix(y_test, y_pred)
+
+# Print the performance metrics
+print("Accuracy:", accuracy)
+print("Precision:", precision)
+print("Recall:", recall)
+print("F1 Score:", f1)
+print("Confusion Matrix:\n", conf_matrix)
 
