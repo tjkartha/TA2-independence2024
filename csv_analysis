@@ -73,7 +73,4 @@ class CSVAnalysis:
         sns.kdeplot(merged_df[column], shade=True)
 
 
-    def density_plot(df, column):
-        "Create a density plot."
-        sns.kdeplot(df[column], shade=True)
-        plt.show()
+    
