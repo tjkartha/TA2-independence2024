@@ -4,73 +4,73 @@ import matplotlib.pyplot as plt
 
 class CSVAnalysis:
 
-    def dataframe_head(df):
+    def dataframe_head(merged_df):
         """Return the first 5 rows of the DataFrame."""
-        return df.head()
+        return merged_df.head()
 
-    def dataframe_tail(df):
+    def dataframe_tail(merged_df):
         """Return the last 5 rows of the DataFrame."""
-        return df.tail()
+        return merged_df.tail()
 
-    def dataframe_shape(df):
+    def dataframe_shape(merged_df):
         """Return the shape of the DataFrame."""
-        return df.shape
+        return merged_df.shape
 
-    def dataframe_info(df):
+    def dataframe_info(merged_df):
         """Print a concise summary of a DataFrame."""
-        return df.info()
+        return merged_df.info()
 
-    def dataframe_describe(df):
+    def dataframe_describe(merged_df):
         """Generate descriptive statistics."""
-        return df.describe()
+        return merged_df.describe()
 
-    def dataframe_dtypes(df):
+    def dataframe_dtypes(merged_df):
         """Return the data types of the columns."""
-        return df.dtypes
+        return merged_df.dtypes
 
-    def histplot(df, column):
+    def histplot(merged_df, column):
         """Create a histogram plot."""
-        sns.histplot(df[column])
+        sns.histplot(merged_df[column])
         plt.show()
 
-    def boxplot(df, column):
+    def boxplot(merged_df, column):
         """Create a box plot."""
-        sns.boxplot(y=df[column])
+        sns.boxplot(y=merged_df[column])
         plt.show()
 
-    def scatterplot(df, x, y):
+    def scatterplot(merged_df, x, y):
         """Create a scatter plot."""
-        sns.scatterplot(x=df[x], y=df[y])
+        sns.scatterplot(x=merged_df[x], y=merged_df[y])
         plt.show()
 
-    def heatmap(df):
+    def heatmap(merged_df):
         """Create a heatmap."""
-        sns.heatmap(df.corr(), annot=True)
+        sns.heatmap(merged_df.corr(), annot=True)
         plt.show()
 
-    def pairplot(df):
+    def pairplot(merged_df):
         """Create a pair plot."""
-        sns.pairplot(df)
+        sns.pairplot(merged_df)
         plt.show()
 
-    def lineplot(df, x, y):
+    def lineplot(merged_df, x, y):
         """Create a line plot."""
-        sns.lineplot(x=df[x], y=df[y])
+        sns.lineplot(x=merged_df[x], y=merged_df[y])
         plt.show()
 
-    def barplot(df, x, y):
+    def barplot(merged_df, x, y):
         """Create a bar plot."""
-        sns.barplot(x=df[x], y=df[y])
+        sns.barplot(x=merged_df[x], y=merged_df[y])
         plt.show()
 
-    def violinplot(df, x, y):
+    def violinplot(merged_df, x, y):
         """Create a violin plot."""
-        sns.violinplot(x=df[x], y=df[y])
+        sns.violinplot(x=merged_df[x], y=merged_df[y])
         plt.show()
 
-    def density_plot(df, column):
+    def density_plot(merged_df, column):
         """Create a density plot."""
-        sns.kdeplot(df[column], shade=True)
+        sns.kdeplot(merged_df[column], shade=True)
         plt.show()
 
 
