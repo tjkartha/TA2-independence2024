@@ -42,15 +42,13 @@ def get_user_choice(num_models):
             print("Invalid input. Please enter a number.")
 
 def main():
-    models = ["Model A", "Model B", "Model C", "Model D","Model E","Model F","Model G"]
+    models = ["Model A", "Model B", "Model C", "Model D","Model E"]
     model_codes = {
         "Model A": "print('Decision Tree')",
         "Model B": "print('Linear regression')",
         "Model C": "print('Logistic regrssion')",
         "Model D": "print('Random forest')",
-        "Model E": "print('KNN')",
-        "Model F": "print('Naive Byes')",
-        "Model G": "print('k-mean')"
+        "Model E": "print('KNN')"
     }
 
     display_models(models)
