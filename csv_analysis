@@ -1,78 +1,83 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import os
 
 class CSVAnalysis:
-    def dataframe_head(df):
-        "Return the first 5 rows of the DataFrame."
-        return df.head()
+    def dataframe_head(merged_df):
+        """Return the first 5 rows of the DataFrame."""
+        return merged_df.head()
 
-    def dataframe_tail(df):
-        "Return the last 5 rows of the DataFrame."
-        return df.tail()
+    def dataframe_tail(merged_df):
+        """Return the last 5 rows of the DataFrame."""
+        return merged_df.tail()
 
-    def dataframe_shape(df):
-        "Return the shape of the DataFrame."
-        return df.shape
+    def dataframe_shape(merged_df):
+        """Return the shape of the DataFrame."""
+        return merged_df.shape()
 
-    def dataframe_info(df):
-        "Print a concise summary of a DataFrame."
-        return df.info()
+    def dataframe_info(merged_df):
+        """Print a concise summary of a DataFrame."""
+        return merged_df.info()
 
-    def dataframe_describe(df):
-        "Generate descriptive statistics."
-        return df.describe()
+    def dataframe_describe(merged_df):
+        """Generate descriptive statistics."""
+        return merged_df.describe()
 
-    def dataframe_dtypes(df):
-        "Return the data types of the columns."
-        return df.dtypes
+    def dataframe_dtypes(merged_df):
+        """Return the data types of the columns."""
+        return merged_df.dtypes
 
-    def histplot(df, column):
-        "Create a histogram plot."
-        sns.histplot(df[column])
-        plt.show()
+    def save_fig(filename):
+        """Save the current figure to the specified filename."""
+        plt.savefig(filename)
+        plt.close()
 
-    def boxplot(df, column):
-        "Create a box plot."
-        sns.boxplot(y=df[column])
-        plt.show()
+    def histplot(merged_df, column, filepath):
+        """Create a histogram plot."""
+        sns.histplot(merged_df[column])
+        CSVAnalysis.save_fig(os.path.join(filepath, f'{column}_histplot.png'))
 
-    def scatterplot(df, x, y):
-        "Create a scatter plot."
-        sns.scatterplot(x=df[x], y=df[y])
-        plt.show()
+    def boxplot(merged_df, column, filepath):
+        """Create a box plot."""
+        sns.boxplot(y=merged_df[column])
+        CSVAnalysis.save_fig(os.path.join(filepath, f'{column}_boxplot.png'))
 
-    def heatmap(df):
-        "Create a heatmap."
-        sns.heatmap(df.corr(), annot=True)
-        plt.show()
+    def scatterplot(merged_df, x, y, filepath):
+        """Create a scatter plot."""
+        sns.scatterplot(x=merged_df[x], y=merged_df[y])
+        CSVAnalysis.save_fig(os.path.join(filepath, f'{x}_vs_{y}_scatterplot.png'))
 
-    def pairplot(df):
-        "Create a pair plot."
-        sns.pairplot(df)
-        plt.show()
+    def heatmap(merged_df, filepath):
+        """Create a heatmap."""
+        sns.heatmap(merged_df.corr(), annot=True)
+        CSVAnalysis.save_fig(os.path.join(filepath, 'heatmap.png'))
 
-    def lineplot(df, x, y):
-        "Create a line plot."
-        sns.lineplot(x=df[x], y=df[y])
-        plt.show()
+    def pairplot(merged_df, filepath):
+        """Create a pair plot."""
+        sns.pairplot(merged_df)
+        CSVAnalysis.save_fig(os.path.join(filepath, 'pairplot.png'))
 
-    def barplot(df, x, y):
-        "Create a bar plot."
-        sns.barplot(x=df[x], y=df[y])
-        plt.show()
+    def lineplot(merged_df, x, y, filepath):
+        """Create a line plot."""
+        sns.lineplot(x=merged_df[x], y=merged_df[y])
+        CSVAnalysis.save_fig(os.path.join(filepath, f'{x}_vs_{y}_lineplot.png'))
 
-    def violinplot(df, x, y):
-        "Create a violin plot."
-        sns.violinplot(x=df[x], y=df[y])
-        plt.show()
+    def barplot(merged_df, x, y, filepath):
+        """Create a bar plot."""
+        sns.barplot(x=merged_df[x], y=merged_df[y])
+        CSVAnalysis.save_fig(os.path.join(filepath, f'{x}_vs_{y}_barplot.png'))
 
-    def density_plot(df, column):
-        "Create a density plot."
-        sns.kdeplot(df[column], shade=True)
-        plt.show()
+    def violinplot(merged_df, x, y, filepath):
+        """Create a violin plot."""
+        sns.violinplot(x=merged_df[x], y=merged_df[y])
+        CSVAnalysis.save_fig(os.path.join(filepath, f'{x}_vs_{y}_violinplot.png'))
 
-    def regplot(df, x, y):
-        "Create a regression plot."
-        sns.regplot(x=df[x], y=df[y])
-        plt.show()
+    def density_plot(merged_df, column, filepath):
+        """Create a density plot."""
+        sns.kdeplot(merged_df[column], shade=True)
+        CSVAnalysis.save_fig(os.path.join(filepath, f'{column}_densityplot.png'))
+
+
+
+    
