@@ -114,14 +114,6 @@ class DataTransformation:
 
     def encoding_cat(self) -> pd.DataFrame:
         """
-        Takes the dataframe and hot encodes all the categorical columns, returning the resultant dataframe.
-        """
-        categorical_cols = self.df.select_dtypes(include=['object']).columns
-        self.df = pd.get_dummies(self.df, columns=categorical_cols, drop_first=True)
-        return self.df
-
-    def encoding_cat(self) -> pd.DataFrame:
-        """
         Takes the dataframe and hot encodes all the categorical columns using OneHotEncoder from sklearn,
         returning the resultant dataframe.
         """
