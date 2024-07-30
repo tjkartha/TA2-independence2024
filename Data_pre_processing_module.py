@@ -121,7 +121,7 @@ class DataTransformation:
         categorical_cols = self.df.select_dtypes(include=['object']).columns
         
         # Create an instance of OneHotEncoder
-        encoder = OneHotEncoder(drop='first', sparse=False)
+        encoder = OneHotEncoder(drop='first', sparse_output=False)
         
         # Apply OneHotEncoder to categorical columns
         encoded_data = encoder.fit_transform(self.df[categorical_cols])
