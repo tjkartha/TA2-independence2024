@@ -1,4 +1,6 @@
 import pandas as pd
+from sklearn.preprocessing import OneHotEncoder
+
 
 class DataCleaning:
     def __init__(self):
@@ -117,5 +119,30 @@ class DataTransformation:
         categorical_cols = self.df.select_dtypes(include=['object']).columns
         self.df = pd.get_dummies(self.df, columns=categorical_cols, drop_first=True)
         return self.df
+
+    def encoding_cat(self) -> pd.DataFrame:
+        """
+        Takes the dataframe and hot encodes all the categorical columns using OneHotEncoder from sklearn,
+        returning the resultant dataframe.
+        """
+        # Select categorical columns
+        categorical_cols = self.df.select_dtypes(include=['object']).columns
+        
+        # Create an instance of OneHotEncoder
+        encoder = OneHotEncoder(drop='first', sparse=False)
+        
+        # Apply OneHotEncoder to categorical columns
+        encoded_data = encoder.fit_transform(self.df[categorical_cols])
+        
+        # Create a DataFrame with the encoded data
+        encoded_df = pd.DataFrame(encoded_data, columns=encoder.get_feature_names_out(categorical_cols))
+        
+        # Drop the original categorical columns from the dataframe
+        self.df = self.df.drop(categorical_cols, axis=1)
+        
+        # Concatenate the original dataframe with the encoded dataframe
+        self.df = pd.concat([self.df, encoded_df], axis=1)
+        return self.df
+    
 
 
