@@ -28,13 +28,13 @@ class DecisionTreeModel:
 dt_model = DecisionTreeModel()
 
 # Fit the model
-dt_model.fit(x_train, y_train)
+dt_model.fit(modelbuild.x_train,modelbuild.y_train)
 
 # Make predictions
-y_pred_dt = dt_model.predict(x_test)
+y_pred_dt = dt_model.predict(modelbuild.x_test)
 
 # Evaluate the model
-accuracy_dt, precision_dt, recall_dt, f1_dt, conf_matrix_dt = dt_model.evaluate(y_test, y_pred_dt)
+accuracy_dt, precision_dt, recall_dt, f1_dt, conf_matrix_dt = dt_model.evaluate(modelbuild.y_test,modelbuild.y_pred_dt)
 
 # Print the performance metrics
 print("Decision Tree Classifier Performance:")

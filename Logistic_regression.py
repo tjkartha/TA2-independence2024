@@ -28,13 +28,13 @@ class LogisticRegressionModel:
 log_model = LogisticRegressionModel()
 
 # Fit the model
-log_model.fit(X_train, y_train)
+log_model.fit(modelbuild.X_train,modelbuild.y_train)
 
 # Make predictions
-y_pred = log_model.predict(X_test)
+y_pred = log_model.predict(modelbuild.X_test)
 
 # Evaluate the model
-accuracy, precision, recall, f1, conf_matrix = log_model.evaluate(y_test, y_pred)
+accuracy, precision, recall, f1, conf_matrix = log_model.evaluate(modelbuild.y_test, y_pred)
 
 # Print the performance metrics
 print("Logistic Regression Classifier Performance:")

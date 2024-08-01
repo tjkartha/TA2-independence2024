@@ -28,13 +28,13 @@ class RandomForestModel:
 rf_model = RandomForestModel()
 
 # Fit the model
-rf_model.fit(X_train, y_train)
+rf_model.fit(modelbuild.X_train, modelbuild.y_train)
 
 # Make predictions
-y_pred = rf_model.predict(X_test)
+y_pred = rf_model.predict(modelbuild.X_test)
 
 # Evaluate the model
-accuracy, precision, recall, f1, conf_matrix = rf_model.evaluate(y_test, y_pred)
+accuracy, precision, recall, f1, conf_matrix = rf_model.evaluate(modelbuild.y_test, modelbuild.y_pred)
 
 # Print the performance metrics
 print("Random Forest Classifier Performance:")
