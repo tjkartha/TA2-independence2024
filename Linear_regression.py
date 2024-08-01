@@ -2,6 +2,7 @@ import sklearn
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
+import modelbuild
 
 class LinearRegressionModel:
     def __init__(self):
@@ -28,13 +29,13 @@ class LinearRegressionModel:
 lin_model = LinearRegressionModel()
 
 # Fit the model
-lin_model.fit(X_train, y_train)
+lin_model.fit(modelbuild.X_train, modelbuild.y_train)
 
 # Make predictions
-y_pred = lin_model.predict(X_test)
+y_pred = lin_model.predict(modelbuild.X_test)
 
 # Evaluate the model
-mse, r2 = lin_model.evaluate(y_test, y_pred)
+mse, r2 = lin_model.evaluate(modelbuild.y_test, modelbuild.y_pred)
 
 print(f"Mean Squared Error (MSE): {mse}")
 print(f"R-squared (R2): {r2}")

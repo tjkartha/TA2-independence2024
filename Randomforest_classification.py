@@ -1,5 +1,6 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
+import modelbuild
 
 class RandomForestModel:
     def __init__(self, random_state=0):

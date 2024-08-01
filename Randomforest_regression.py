@@ -1,5 +1,6 @@
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, r2_score
+import modelbuild
 
 class RandomForestRegressorModel:
     def __init__(self, random_state=0):
@@ -24,13 +25,13 @@ class RandomForestRegressorModel:
 rf_reg_model = RandomForestRegressorModel()
 
 # Fit the model
-rf_reg_model.fit(a_train, s_train)
+rf_reg_model.fit(modelbuild.X_train, modelbuild.y_train)
 
 # Make predictions
-y_pred = rf_reg_model.predict(a_test)
+y_pred = rf_reg_model.predict(modelbuild.X_test)
 
 # Evaluate the model
-mse, r2 = rf_reg_model.evaluate(s_test, y_pred)
+mse, r2 = rf_reg_model.evaluate(modelbuild.y_test, modelbuild.y_pred)
 
 # Print the performance metrics
 print("Random Forest Regressor Performance:")
