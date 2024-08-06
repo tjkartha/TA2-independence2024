@@ -1,8 +1,5 @@
-from data_loader import DataLoader
-from file_reader import FileReader
-from data_merger import DataMerger
-from user_input_handler import UserInputHandler
 import pandas as pd
+from data_loader import DataLoader, FileReader, DataMerger, UserInputHandler
 
 def main():
     file_paths = UserInputHandler.get_file_paths_from_input()
@@ -30,4 +27,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
