@@ -10,7 +10,7 @@ from Random_forest_r import train_random_forest_regression, print_performance_me
 
 def main():
     # Load the dataset
-    data_path ="C:/Users/prans/OneDrive/Documents/TA_2/penguins (1).csv"
+    data_path = "C:/Users/prans/OneDrive/Documents/TA_2/penguins (1).csv"
     data = load_data(data_path)
 
     # Perform train-test split
@@ -46,7 +46,6 @@ def main():
         print("F1 Score:", f1)
         print("Confusion Matrix:\n", conf_matrix)
     
-    # Implement other models similarly
     elif selected_model == "Linear Regression":
         model = train_linear_regression(X_train, y_train)
         print("Linear Regression Performance:")
@@ -65,8 +64,17 @@ def main():
         print("Precision:", precision)
         print("Recall:", recall)
         print("F1 Score:", f1)
-
-
+        print("Confusion Matrix:\n", conf_matrix)
+    
+    elif selected_model == "Decision Tree Regressor":
+        model = train_decision_tree_regression(X_train, y_train)
+        print("Decision Tree Regressor Performance:")
+        print_performance_metrics_regressor(model, X_test, y_test)
+    
+    elif selected_model == "Random Forest Regressor":
+        model = train_random_forest_regression(X_train, y_train)
+        print("Random Forest Regressor Performance:")
+        print_performance_metrics_regressor(model, X_test, y_test)
 
 if __name__ == "__main__":
     main()
