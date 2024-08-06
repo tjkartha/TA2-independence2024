@@ -112,14 +112,14 @@ class DataTransformation:
             self.df[column] = (self.df[column] - col_mean) / col_std
         return self.df
 
-    def encoding_cat(self) -> pd.DataFrame:
+    def encoding_cat(self,cat_cols) -> pd.DataFrame:
         """
         Takes the dataframe and hot encodes all the categorical columns using OneHotEncoder from sklearn,
         returning the resultant dataframe.
         """
         # Select categorical columns
-        categorical_cols = self.df.select_dtypes(include=['object']).columns
-        
+        #categorical_cols = self.df.select_dtypes(include=['object']).columns
+        categorical_cols = cat_cols
         # Create an instance of OneHotEncoder
         encoder = OneHotEncoder(drop='first', sparse_output=False)
         
