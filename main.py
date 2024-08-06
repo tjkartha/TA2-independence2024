@@ -1,16 +1,30 @@
-import pandas as pd
 from data_loader import DataLoader, FileReader, DataMerger, UserInputHandler
-
+import pandas as pd
 def main():
     file_paths = UserInputHandler.get_file_paths_from_input()
-    print(type(file_paths))
+    if not file_paths:
+        print("No files selected.")
+        return
 
     if len(file_paths) > 1:
         if_yes = input("Do you want to merge the files side-by-side? (yes/no): ")
         if if_yes.lower() == "yes":
             merged_df = DataMerger.merge_files_side_by_side(file_paths)
             if merged_df is not None:
-                print(merged_df.head())
+                output_file_path = UserInputHandler.get_output_file_path()
+                if output_file_path.endswith('.csv'):
+                    DataMerger.save_to_csv(merged_df, output_file_path)
+                elif output_file_path.endswith('.xlsx'):
+                    merged_df.to_excel(output_file_path, index=False)
+                    print(f"Merged file saved to {output_file_path}")
+                else:
+                    print("Unsupported output file format. Please use .csv or .xlsx.")
+                # Code to automatically download the file (if running in a web environment)
+                try:
+                    from IPython.display import FileLink
+                    display(FileLink(output_file_path))
+                except ImportError:
+                    pass
             else:
                 print("No DataFrames to merge.")
         elif if_yes.lower() == "no":
@@ -27,3 +41,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
