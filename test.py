@@ -7,7 +7,7 @@ from DecisionTree_classifier import train_decision_tree_classifier, evaluate_mod
 
 def main():
     # Load the dataset
-    data_path = pd.read_csv("C:/Users/deepi/OneDrive/Documents/GitHub/TA2-independence2024/penguins.csv")
+    data_path = pd.read_csv("penguins.csv")
     # data = load_data(data_path)
 
     # Perform train-test split
