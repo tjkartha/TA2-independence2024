@@ -112,19 +112,7 @@ class CSVAnalysis:
         print("\nDataFrame Data Types:")
         print(CSVAnalysis.dataframe_dtypes(merged_df))
 
-        # Generate plots
-        for column in merged_df.select_dtypes(include='number').columns:
-            CSVAnalysis.histplot(merged_df, column, filepath)
-            CSVAnalysis.boxplot(merged_df, column, filepath)
-            CSVAnalysis.density_plot(merged_df, column, filepath)
-
-        numeric_columns = merged_df.select_dtypes(include='number').columns
-        for i in range(len(numeric_columns)):
-            for j in range(i+1, len(numeric_columns)):
-                CSVAnalysis.scatterplot(merged_df, numeric_columns[i], numeric_columns[j], filepath)
-
-        CSVAnalysis.heatmap(merged_df, filepath)
-        CSVAnalysis.pairplot(merged_df, filepath)
+        
 
     @staticmethod
     def interactive_plot_selection(merged_df, filepath):
