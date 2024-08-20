@@ -111,7 +111,7 @@ def main(data):
         user_response = input("Do you want to perform a train-test split on the target column 'sex'? (yes/no): ").strip().lower()
         if user_response == 'yes':
             test_size = float(input("Enter the test size (e.g., 0.2 for 20% test data): ").strip())
-            X_train, X_test, y_train, y_test = perform_train_test_split(data, 'sex', test_size)
+            X_train, X_test, y_train, y_test = perform_train_test_split(data, 'HeartDisease', test_size)
             print("Train-test split performed.")
             print("X_train:\n", X_train.head())  # Print only the head for brevity
             print("X_test:\n", X_test.head())    # Print only the head for brevity
