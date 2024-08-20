@@ -12,9 +12,6 @@ def main():
     # input----
     handler = DataHandler()
     df = handler.handle_files()
-    # df = handler.single_file
-    # print ("--------------")
-    # print (df)
 
     # eda-viz----
     csv = CSVAnalysis()
@@ -22,16 +19,21 @@ def main():
 
     # preproc----
     preprocessor = DataPreProcessor(df)
-    # print ("~~~~~")
     preprocessed_ = preprocessor.data_pre_processed()
-    # print ("-----")
     df = preprocessed_[0]
-    # print (df.info())
 
     # eda-viz----
-    plots_storage = "./viz/"
-    os.mkdir(plots_storage)
-    csv.interactive_plot_selection(df, plots_storage)
+    # plots_storage = "./viz/"
+    # os.mkdir(plots_storage)
+    # csv.interactive_plot_selection(df, plots_storage)
+
+    # preproc----
+    transform_ = DataTransformation(df)
+    df = transform_.encoding_cat(cat_cols=preprocessed_[1])
+    # print(df)
+
+    # model-eval----
+
 
 if __name__ == "__main__":
     main()
