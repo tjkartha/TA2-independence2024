@@ -1,3 +1,4 @@
+import os
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -25,7 +26,12 @@ def main():
     preprocessed_ = preprocessor.data_pre_processed()
     # print ("-----")
     df = preprocessed_[0]
-    # print (df)
+    # print (df.info())
+
+    # eda-viz----
+    plots_storage = "./viz/"
+    os.mkdir(plots_storage)
+    csv.interactive_plot_selection(df, plots_storage)
 
 if __name__ == "__main__":
     main()
