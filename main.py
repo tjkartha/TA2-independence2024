@@ -1,5 +1,10 @@
+import warnings
+warnings.filterwarnings("ignore")
+
 from data_loader import DataHandler
 from csv_analysis import CSVAnalysis
+from Data_pre_processing_module_v2 import *
+
 
 def main():
     
@@ -15,8 +20,12 @@ def main():
     csv.perform_eda(df)
 
     # preproc----
-    
-    
+    preprocessor = DataPreProcessor(df)
+    # print ("~~~~~")
+    preprocessed_ = preprocessor.data_pre_processed()
+    # print ("-----")
+    df = preprocessed_[0]
+    # print (df)
 
 if __name__ == "__main__":
     main()
