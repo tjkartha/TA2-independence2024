@@ -1,19 +1,19 @@
-from main_1 import main
-from model_build import load_data
+# from main_1 import main
+# from model_build import load_data
 
-data_path = "C:/Users/prans/OneDrive/Documents/TA_2/penguins (1).csv"
-data = load_data(data_path)
+# data_path = "C:/Users/prans/OneDrive/Documents/TA_2/penguins (1).csv"
+# data = load_data(data_path)
 
-# Run the main function from main_1.py with the loaded data
-main(data)
+# # Run the main function from main_1.py with the loaded data
+# main(data)
     
 
-# from main_1 import main
+from main_1 import main
 
-# # Define the model_eval function
-# def model_eval(df):
-#     # Run the main function from main_1.py with the preprocessed DataFrame
-#     main(df)
+# Define the model_eval function
+def model_eval(df):
+    # Run the main function from main_1.py with the preprocessed DataFrame
+    main(df)
 
 # # Example usage:
 # # Assuming the preprocessing script or team provides the DataFrame 'df',
