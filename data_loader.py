@@ -6,7 +6,7 @@ import cv2
 import concurrent.futures
 import os
 
-class DataLoader:
+class DataHandler:
     @staticmethod
     def load_data(file_path):
         file_extension = os.path.splitext(file_path)[1].lower()
@@ -38,12 +38,11 @@ class DataLoader:
             print(f"Error loading {file_path}: {e}")
             return None
 
-class FileReader:
     @staticmethod
     def read_multiple_files(file_paths):
         loaded_data = []
         with concurrent.futures.ThreadPoolExecutor() as executor:
-            future_to_file = {executor.submit(DataLoader.load_data, file_path): file_path for file_path in file_paths}
+            future_to_file = {executor.submit(DataHandler.load_data, file_path): file_path for file_path in file_paths}
             for future in concurrent.futures.as_completed(future_to_file):
                 file_path = future_to_file[future]
                 try:
@@ -54,10 +53,9 @@ class FileReader:
                     print(f"Error loading {file_path}: {e}")
         return loaded_data
 
-class DataMerger:
     @staticmethod
     def merge_files_side_by_side(file_paths):
-        dfs = FileReader.read_multiple_files(file_paths)
+        dfs = DataHandler.read_multiple_files(file_paths)
         dfs = [df for df in dfs if isinstance(df, pd.DataFrame)]
         if len(dfs) == 0:
             return None
@@ -77,7 +75,6 @@ class DataMerger:
         else:
             print("Provided data is not a DataFrame.")
 
-class UserInputHandler:
     @staticmethod
     def get_file_paths_from_input():
         file_paths = input("Enter file paths separated by commas: ").split(',')
@@ -88,3 +85,41 @@ class UserInputHandler:
     def get_output_file_path():
         return input("Enter the output file path (e.g., output.csv or output.xlsx): ")
 
+    def handle_files(self):
+        file_paths = self.get_file_paths_from_input()
+        if not file_paths:
+            print("No files selected.")
+            return
+
+        if len(file_paths) > 1:
+            if_yes = input("Do you want to merge the files side-by-side? (yes/no): ")
+            if if_yes.lower() == "yes":
+                merged_df = self.merge_files_side_by_side(file_paths)
+                if merged_df is not None:
+                    output_file_path = self.get_output_file_path()
+                    if output_file_path.endswith('.csv'):
+                        self.save_to_csv(merged_df, output_file_path)
+                    elif output_file_path.endswith('.xlsx'):
+                        merged_df.to_excel(output_file_path, index=False)
+                        print(f"Merged file saved to {output_file_path}")
+                    else:
+                        print("Unsupported output file format. Please use .csv or .xlsx.")
+                    # Code to automatically download the file (if running in a web environment)
+                    try:
+                        from IPython.display import FileLink
+                        display(FileLink(output_file_path))
+                    except ImportError:
+                        pass
+                else:
+                    print("No DataFrames to merge.")
+            elif if_yes.lower() == "no":
+                loaded_files = self.read_multiple_files(file_paths)
+                for idx, file_data in enumerate(loaded_files):
+                    variable_name = f"file_{idx + 1}"
+                    globals()[variable_name] = file_data
+                    print(f"{variable_name}:\n{file_data}\n")
+        else:
+            single_file = self.load_data(file_paths[0])
+            print(single_file)
+            if isinstance(single_file, pd.DataFrame):
+                print(single_file.head())
