@@ -96,7 +96,7 @@ class CSVAnalysis:
         CSVAnalysis.save_fig(os.path.join(filepath, f'{column}_densityplot.png'))
 
     @staticmethod
-    def perform_eda(merged_df, filepath):
+    def perform_eda(merged_df):
         """Perform comprehensive EDA and save plots."""
         # Print EDA summaries
         print("DataFrame Head:")

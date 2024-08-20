@@ -6,6 +6,8 @@ import cv2
 import concurrent.futures
 import os
 
+# file_path = input("")
+
 class DataHandler:
     @staticmethod
     def load_data(file_path):
@@ -120,6 +122,9 @@ class DataHandler:
                     print(f"{variable_name}:\n{file_data}\n")
         else:
             single_file = self.load_data(file_paths[0])
-            print(single_file)
-            if isinstance(single_file, pd.DataFrame):
-                print(single_file.head())
+            # print ("+++++++++++++++++++")
+            # print(single_file)
+            # print ("~~~~~~~~~~~~~~~~~~~")
+            # if isinstance(single_file, pd.DataFrame):
+                # print(single_file.head())
+            return single_file
