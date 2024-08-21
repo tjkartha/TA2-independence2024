@@ -46,9 +46,14 @@ def train_logistic_regression_classifier(X_train, y_train):
     model.fit(X_train, y_train)
     return model
 
-# Evaluate Classifier Model
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix, roc_curve, auc
+from sklearn.preprocessing import label_binarize
+
 def evaluate_model_classifier(model, X_test, y_test):
     y_pred = model.predict(X_test)
+    y_prob = model.predict_proba(X_test)  # Probabilities for ROC/AUC
+
+    # Calculate basic metrics
     accuracy = accuracy_score(y_test, y_pred)
     precision = precision_score(y_test, y_pred, average='weighted')
     recall = recall_score(y_test, y_pred, average='weighted')
@@ -61,7 +66,25 @@ def evaluate_model_classifier(model, X_test, y_test):
     print("F1 Score:", f1)
     print("Confusion Matrix:\n", conf_matrix)
     
-    return accuracy, precision, recall, f1, conf_matrix
+    # ROC and AUC Calculation
+    if len(set(y_test)) == 2:  # Binary classification
+        fpr, tpr, _ = roc_curve(y_test, y_prob[:, 1])
+        roc_auc = auc(fpr, tpr)
+        print("AUC:", roc_auc)
+        
+    else:  # Multiclass classification
+        y_test_bin = label_binarize(y_test, classes=range(len(set(y_test))))
+        n_classes = y_test_bin.shape[1]
+
+        roc_auc_dict = {}
+        for i in range(n_classes):
+            fpr, tpr, _ = roc_curve(y_test_bin[:, i], y_prob[:, i])
+            roc_auc_dict[i] = auc(fpr, tpr)
+
+        print("AUC per class:", roc_auc_dict)
+
+    return accuracy, precision, recall, f1, conf_matrix, roc_auc_dict if len(set(y_test)) > 2 else roc_auc
+
 
 # Evaluate Regressor Model
 def print_performance_metrics_regressor(model, X_test, y_test):
