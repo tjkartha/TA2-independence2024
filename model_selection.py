@@ -80,8 +80,3 @@ def model_select(df):
         if repeat_response != 'yes':
             continue_splitting = False
 
-# if __name__ == "__main__":
-#     # Load your data here
-#     data_path = 'C:\\Users\\prans\\OneDrive\\Documents\\TA_2\\penguins (1).csv'
-#     data = load_data(data_path)
-#     model_select(data)
