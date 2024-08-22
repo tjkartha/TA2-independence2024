@@ -2,7 +2,6 @@
 import os
 from data_split import perform_train_test_split
 import numpy as np
-import pandas as pd
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
 from sklearn.linear_model import LinearRegression, LogisticRegression
