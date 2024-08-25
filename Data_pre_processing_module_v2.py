@@ -113,13 +113,18 @@ class DataTransformation:
         return self.df
 
     def encoding_cat(self, cat_cols):
-        #categorical_cols = self.df.select_dtypes(include=['object']).columns
-        categorical_cols = cat_cols
-        encoder = OneHotEncoder(sparse_output= False, drop='first')
-        encoded_data = encoder.fit_transform(self.df[categorical_cols])
-        encoded_df = pd.DataFrame(encoded_data, columns=encoder.get_feature_names_out(categorical_cols))
-        self.df.drop(categorical_cols, axis=1, inplace=True)
+        encoder = OneHotEncoder(sparse_output=False, drop='first')
+        encoded_data = encoder.fit_transform(self.df[cat_cols])
+
+        # Convert encoded data to DataFrame with appropriate column names
+        encoded_df = pd.DataFrame(encoded_data, columns=encoder.get_feature_names_out(cat_cols), index=self.df.index)
+
+        # Drop original categorical columns
+        self.df.drop(cat_cols, axis=1, inplace=True)
+
+        # Concatenate encoded columns back to the original DataFrame
         self.df = pd.concat([self.df, encoded_df], axis=1)
+
         return self.df
     
 
