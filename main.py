@@ -6,6 +6,7 @@ from data_loader import DataHandler
 from csv_analysis import CSVAnalysis
 from Data_pre_processing_module_v2 import *
 from model_selection import *
+from post_model_viz import *
 
 def main():
     
@@ -28,9 +29,11 @@ def main():
     # eda-viz----
     print("\n--------------- eda-viz ------------------------")
     plots_storage = "./viz/"
-    # if(os.path.isdir('new_folder')==False)
-    # os.mkdir(plots_storage)
-    # csv.interactive_plot_selection(df, plots_storage)
+    if(os.path.isdir('new_folder')==False)
+        os.mkdir(plots_storage)
+        csv.interactive_plot_selection(df, plots_storage)
+    else:
+        csv.interactive_plot_selection(df, plots_storage)
 
     # preproc----
     print("\n--------------- preproc ------------------------")
@@ -39,7 +42,7 @@ def main():
     print("**********************\n")
     transform_ = DataTransformation(df)
     df = transform_.encoding_cat(cat_cols=preprocessed_[1])
-    print("\n Printing the columns:")
+    print("\nPrinting the columns:")
     print(df.info())
     print("\n------------\n")
     print("NaN values: \n", df.isnull().sum())
@@ -47,6 +50,11 @@ def main():
     # model-eval----
     print("\n--------------- model-eval ---------------------")
     model_select(df)
+
+    # eda-viz----
+    print("\n--------------- eda-viz ------------------------")
+    pmv_ = PostModelViz()
+    interactive_plot_selection(plots_storage, results_dict)
 
 if __name__ == "__main__":
     main()
